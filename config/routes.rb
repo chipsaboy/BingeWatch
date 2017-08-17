@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  resources :actors
-  post '/rate' => 'rater#create', :as => 'rate'
   resources :reviews
   resources :shows
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
