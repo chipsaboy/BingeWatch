@@ -21,16 +21,21 @@ ActiveRecord::Schema.define(version: 20170817183914) do
   end
 
   create_table "shows", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.string "network"
-    t.integer "series"
+    t.string "name"
+    t.text "overview"
+    t.string "poster"
+    t.float "rating"
+    t.integer "num_episodes"
+    t.integer "num_seasons"
+    t.string "cast"
     t.string "created"
-    t.string "image"
+    t.string "network"
+    t.string "genres"
+    t.string "backdrop"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_shows_on_name"
     t.index ["network"], name: "index_shows_on_network"
-    t.index ["title"], name: "index_shows_on_title"
   end
 
   create_table "users", force: :cascade do |t|
