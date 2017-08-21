@@ -1,14 +1,40 @@
+<!-- <img src="http://image.tmdb.org/t/p/original/<%= @show.backdrop %>" alt="backdrop"> -->
 <div class="row">
-  <div class="small-2 large-2 columns">
-  </div>
-  <br>
-  <div class="small-2 large-4 columns">
+  <div class="container">
     <% if current_user %>
-      Show: <%= @show.title %>
-      <br>
-      Synopsis: <%= @show.description %>
-      <br>
-      Network: <%= @show.network %>
+    <div class="row">
+      <div class="col">
+        <h1><%= @show.name %></h1>
+        <br>
+
+        <%= @show.overview %><br>
+        <br>
+
+        Cast: <%= @show.cast %><br>
+        <br>
+
+        Rating: <%= @show.rating %><br>
+        <br>
+
+        Genre: <%= @show.genres %><br>
+        <br>
+
+        Number of Episodes: <%= @show.num_episodes %><br>
+        <br>
+
+        Number of Seasons: <%= @show.num_seasons %><br>
+        <br>
+
+        First Aired: <%= @show.created %><br>
+        <br>
+
+        Network: <%= @show.network %><br>
+        <br>
+      </div>
+      <div class="col img-fluid">
+        <img src="http://image.tmdb.org/t/p/w500/<%= @show.poster %>" alt="poster">
+      </div>
+    </div>
     <% end %>
   </div>
 </div>

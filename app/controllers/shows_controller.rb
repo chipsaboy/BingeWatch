@@ -7,12 +7,11 @@ class ShowsController < ApplicationController
   end
 
   def new
-    @show = current_user.shows.build
-    @show.reviews.build
+    @show = Show.new
   end
 
   def create
-    search = Show.find_with_tmdb(params[:search])
+    search = Show.find_with_tmdb(params[:name])
     @show = current_user.show.build(search)
     if @show.save
       redirect_to @show, notice: 'Show successfully added'
