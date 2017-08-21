@@ -1,9 +1,8 @@
-<div class="media">
+<div class="container-fluid">
 <% @shows.each do |show| %>
-  <img class="d-flex mr-3" src="http://image.tmdb.org/t/p/w185/<%= show.poster %>" alt="">
+  <img class="img-fluid" src="http://image.tmdb.org/t/p/w185/<%= show.poster %>" alt="">
   <div class="media-body">
-    <h3 class="mt-0"><%= show.name %></h3>
-    <%= show.overview %>
+    <h3 class="mt-0"><%= link_to show.name, show_path(show) %></h3>
   </div>
   <br>
 <% end %>

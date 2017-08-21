@@ -12,24 +12,28 @@ class Show < ApplicationRecord
 
   def self.find_with_tmdb(search)
     q = Tmdb::TV.find(search)
-    id = q[0].id
-    detail = Tmdb::TV.detail(id)
-    show = Show.new
-    cast = Show.find_tmdb_cast(id)
-    show.assign_attributes(
-    	name: detail["name"],
-    	overview: detail["overview"],
-    	poster: detail["poster_path"],
-    	rating: detail["vote_average"],
-    	num_episodes: detail["number_of_episodes"],
-    	num_seasons: detail["number_of_seasons"],
-    	created: detail["first_air_date"],
-    	network: detail["networks"][0]["name"],
-    	backdrop: detail["backdrop_path"],
-    	genres: detail["genres"][0]["name"],
-    	cast: cast
-    	)
-    return show
+    if !q.empty?
+	    id = q[0].id
+	    detail = Tmdb::TV.detail(id)
+	    show = Show.new
+	    cast = Show.find_tmdb_cast(id)
+	    show.assign_attributes(
+	    	name: detail["name"],
+	    	overview: detail["overview"],
+	    	poster: detail["poster_path"],
+	    	rating: detail["vote_average"],
+	    	num_episodes: detail["number_of_episodes"],
+	    	num_seasons: detail["number_of_seasons"],
+	    	created: detail["first_air_date"],
+	    	network: detail["networks"][0]["name"],
+	    	backdrop: detail["backdrop_path"],
+	    	genres: detail["genres"][0]["name"],
+	    	cast: cast
+	    	)
+	    return show
+	else
+		return nil
+	end
   end
 
   def self.find_tmdb_cast(id)
