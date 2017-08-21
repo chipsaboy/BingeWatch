@@ -1,40 +1,44 @@
 <!-- <img src="http://image.tmdb.org/t/p/original/<%= @show.backdrop %>" alt="backdrop"> -->
-<div class="row">
-  <div class="container">
-    <% if current_user %>
-    <div class="row">
-      <div class="col">
+<div class="container">
+    <div class="fb-profile">
+        <img align="left" class="fb-image-lg" src="http://image.tmdb.org/t/p/original/<%= @show.backdrop %>" alt=""/>
+        <img align="left" class="fb-image-profile thumbnail" src="http://image.tmdb.org/t/p/w500/<%= @show.poster %>" alt=""/>
         <h1><%= @show.name %></h1>
-        <br>
+        <div class="fb-profile-text">
+          <div class="container-fluid">
+           <% if current_user %>
+            <div class="row">
+              <div class="col">
+                <%= @show.overview %><br>
+                <br>
 
-        <%= @show.overview %><br>
-        <br>
+                Cast: <%= @show.cast %><br>
+                <br>
 
-        Cast: <%= @show.cast %><br>
-        <br>
+                Rating: <%= @show.rating %><br>
+                <br>
 
-        Rating: <%= @show.rating %><br>
-        <br>
+                Genre: <%= @show.genres %><br>
+                <br>
 
-        Genre: <%= @show.genres %><br>
-        <br>
+                Number of Episodes: <%= @show.num_episodes %><br>
+                <br>
 
-        Number of Episodes: <%= @show.num_episodes %><br>
-        <br>
+                Number of Seasons: <%= @show.num_seasons %><br>
+                <br>
 
-        Number of Seasons: <%= @show.num_seasons %><br>
-        <br>
+                First Aired: <%= @show.created %><br>
+                <br>
 
-        First Aired: <%= @show.created %><br>
-        <br>
-
-        Network: <%= @show.network %><br>
-        <br>
-      </div>
-      <div class="col img-fluid">
-        <img src="http://image.tmdb.org/t/p/w500/<%= @show.poster %>" alt="poster">
-      </div>
+                Network: <%= @show.network %><br>
+                <br>
+              </div>
+          </div>
+          <% end %>
+        </div>
+        </div>
     </div>
-    <% end %>
-  </div>
+</div>
+<div class="row">
+
 </div>
