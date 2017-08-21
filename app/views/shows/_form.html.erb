@@ -1,0 +1,75 @@
+<%= form_for @show do |f| %>
+	<% if @show.errors.any? %>
+	<div id="error_explaination">
+		<h3>
+			<%= pluralize(@show.errors.count, "error") %> prevented this show from being saved:
+		</h3>
+		<ul>
+			<% @show.errors.full_messages.each do |msg| %>
+			<li>
+				<%= msg %>
+			</li>
+			<% end %>
+		</ul>
+	</div>
+	<% end %>
+
+	<div class="field">
+		<%= f.label :name %><br>
+		<%= f.text_field :name %>
+	</div>
+	<br>
+	<div class="field">
+		<%= f.label :overview %><br>
+		<%= f.text_field :overview %>
+	</div>
+	<br>
+	<br>
+	<div class="field">
+		<%= f.label :rating %><br>
+		<%= f.text_field :rating %>
+	</div>
+	<br>
+	<div class="field">
+		<%= f.label :num_episodes, 'Number of Episodes' %><br>
+		<%= f.text_field :num_episodes %>
+	</div>
+	<br>
+	<div class="field">
+		<%= f.label :num_seasons, 'Number of Seasons' %><br>
+		<%= f.text_field :num_seasons %>
+	</div>
+	<br>
+	<div class="field">
+		<%= f.label :cast %><br>
+		<%= f.text_field :cast %>
+	</div>
+	<br>
+	<div class="field">
+		<%= f.label :created, 'First Aired' %><br>
+		<%= f.text_field :created %>
+	</div>
+	<br>
+	<div class="field">
+		<%= f.label :network %><br>
+		<%= f.text_field :network %>
+	</div>
+	<br>
+	<div class="field">
+		<%= f.label :genres %><br>
+		<%= f.text_field :genres %>
+	</div><br>
+
+	<%= f.fields_for :reviews do |f| %>
+	<h4>Leave a review for this show?</h4>
+		<div class="field">
+			<%= f.label :comment %>
+			<%= f.text_area :comment %>
+		</div>
+	<% end %>
+
+	<div>
+		<%= f.submit %>
+	</div>
+
+<% end %>
