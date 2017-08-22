@@ -1,9 +1,12 @@
-<div class="container-fluid">
-<% @shows.each do |show| %>
-  <img class="img-fluid" src="http://image.tmdb.org/t/p/w185/<%= show.poster %>" alt="">
-  <div class="media-body">
-    <h3 class="mt-0"><%= link_to show.name, show_path(show) %></h3>
+<div class="text-center">
+	<h1>Let's watch something...</h1>
+	<br>
+</div>
+<div id="container">
+  <div>
+  	<% @shows.each do |show| %>
+        <div class="show-element"><img class="show-image" src="http://image.tmdb.org/t/p/w500/<%= show.poster %>"/>
+        </div>
+    <% end %>
   </div>
-  <br>
-<% end %>
 </div>

@@ -2,34 +2,30 @@
     <div class="bg-profile">
         <img align="left" class="bg-image-lg" src="http://image.tmdb.org/t/p/original/<%= @show.backdrop %>" alt=""/>
         <img align="left" class="bg-image-profile thumbnail" src="http://image.tmdb.org/t/p/w500/<%= @show.poster %>" alt=""/>
-        <h1><%= @show.name %></h1>
-        <div class="bg-profile-text">
+        <div class="col-md-9">
           <div class="container-fluid">
            <% if current_user %>
             <div class="row">
-              <div class="col">
-                <%= @show.overview %><br>
+              <div class="">
+                <h1><%= @show.name %></h1>
                 <br>
-
-                Cast: <%= @show.cast %><br>
+                <%= @show.overview %>
                 <br>
-
-                Rating: <%= @show.rating %><br>
+                <% if !@show.cast.empty? %>
+                  <h4>Cast: </h4><%= @show.cast%>
+                <% end %>
                 <br>
-
-                Genre: <%= @show.genres %><br>
+                <h4>Rating: </h4><%= @show.rating %>
                 <br>
-
-                Number of Episodes: <%= @show.num_episodes %><br>
+                <h4>Genre: </h4><%= @show.genres %>
                 <br>
-
-                Number of Seasons: <%= @show.num_seasons %><br>
+                <h4>Number of Episodes: </h4><%= @show.num_episodes %>
                 <br>
-
-                First Aired: <%= @show.created %><br>
+                <h4>Number of Seasons: </h4><%= @show.num_seasons %>
                 <br>
-
-                Network: <%= @show.network %><br>
+                <h4>First Aired: </h4><%= @show.created %>
+                <br>
+                <h4>Network: </h4><%= @show.network %><br>
                 <br>
               </div>
           </div>
@@ -37,7 +33,4 @@
         </div>
         </div>
     </div>
-</div>
-<div class="row">
-
 </div>
