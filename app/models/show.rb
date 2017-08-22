@@ -15,9 +15,8 @@ class Show < ApplicationRecord
     if !q.empty?
 	    id = q[0].id
 	    detail = Tmdb::TV.detail(id)
-	    show = Show.new
 	    cast = Show.find_tmdb_cast(id)
-	    show.assign_attributes(
+	    show = {
 	    	name: detail["name"],
 	    	overview: detail["overview"],
 	    	poster: detail["poster_path"],
@@ -29,7 +28,7 @@ class Show < ApplicationRecord
 	    	backdrop: detail["backdrop_path"],
 	    	genres: detail["genres"][0]["name"],
 	    	cast: cast
-	    	)
+	    	}
 	    return show
 	else
 		return nil

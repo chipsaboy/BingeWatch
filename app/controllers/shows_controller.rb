@@ -1,25 +1,39 @@
 class ShowsController < ApplicationController
-  before_action :find_show, only: [:show, :edit, :update, :destroy]
+  before_action :find_show, only: [:edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    @shows = Show.all.order("name ASC")
+    # @shows = Show.all.order("name ASC")
+    @shows = current_user.shows
   end
 
   def new
     @show = Show.new
+    # @show.reviews = Review.new
   end
 
   def create
-    @show = Show.find_with_tmdb(params[:search])
-    if !@show.nil? && @show.save
-      redirect_to @show, notice: 'Show successfully added'
+  	if !params[:search].empty?
+    	search = Show.find_with_tmdb(params[:search])
+    	@show = current_user.shows.build(search)
+    	if !@show.nil? && @show.save
+      		redirect_to @show, notice: 'Show successfully added'
+    	else
+      		render :new, notice: "We couldn't find that show"
+      	end
     else
-      render :new, notice: "We couldn't find that show"
+    	@show = current_user.shows.build(show_params)
+    	if @show.save
+    		redirect_to @show, notice: 'Show successfully added'
+    	else
+      		render :new, notice: @book.errors.full_messages
+      	end
     end
   end
 
   def show
+  	# @reviews = Review.where(show_id: @show.id)
+  	@show = Show.find(params[:id])
   	if @show
   		@reviews = Review.where(show_id: @show.id)
   	else
