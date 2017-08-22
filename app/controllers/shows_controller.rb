@@ -20,7 +20,11 @@ class ShowsController < ApplicationController
   end
 
   def show
-    @reviews = Review.where(show_id: @show.id)
+  	if @show
+  		@reviews = Review.where(show_id: @show.id)
+  	else
+  		redirect_to shows_url
+  	end
   end
 
   def edit
