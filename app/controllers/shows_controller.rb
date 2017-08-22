@@ -8,8 +8,8 @@ class ShowsController < ApplicationController
   end
 
   def new
-    @show = Show.new
-    # @show.reviews = Review.new
+    @show = current_user.shows.build
+    @show.reviews.build
   end
 
   def create
@@ -26,13 +26,13 @@ class ShowsController < ApplicationController
     	if @show.save
     		redirect_to @show, notice: 'Show successfully added'
     	else
-      		render :new, notice: @book.errors.full_messages
+      		render :new
       	end
     end
   end
 
   def show
-  	# @reviews = Review.where(show_id: @show.id)
+  	@reviews = Review.where(show_id: @show.id)
   	@show = Show.find(params[:id])
   	if @show
   		@reviews = Review.where(show_id: @show.id)
@@ -76,7 +76,7 @@ class ShowsController < ApplicationController
       :network,
       :genres,
       :backdrop,
-      reviews_attributes: [:comment]
+      reviews_attributes: [:rating, :comment]
     )
   end
 end

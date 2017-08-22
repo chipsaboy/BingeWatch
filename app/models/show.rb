@@ -6,7 +6,7 @@ class Show < ApplicationRecord
 
   def reviews_attributes=(reviews_attributes)
     reviews_attributes.each do |i, reviews_attributes|
-      self.reviews.build(review_attributes)
+      self.reviews.build(reviews_attributes)
     end
   end
 

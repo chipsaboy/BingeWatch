@@ -1,5 +1,10 @@
 <h1>Add a new show to your list</h1>
 
+<h2>Search for Show</h2>
 <%= form_tag @show %>
 	<%= text_field_tag :search %>
 	<%= submit_tag "Search", name: nil %>
+
+<h2>Or Create One Here</h2>
+
+<%= render 'form' %>

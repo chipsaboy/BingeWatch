@@ -60,11 +60,12 @@
 		<%= f.text_field :genres %>
 	</div><br>
 
-	<%= f.fields_for :reviews do |f| %>
+	<%= f.fields_for :reviews do |ff| %>
 	<h4>Leave a review for this show?</h4>
 		<div class="field">
-			<%= f.label :comment %>
-			<%= f.text_area :comment %>
+			<%= ff.label :comment %><br>
+			<br>
+			<%= ff.text_area :comment %>
 		</div>
 	<% end %>
 
