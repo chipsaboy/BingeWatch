@@ -25,6 +25,20 @@ class ReviewsController < ApplicationController
 		end
 	end
 
+	def show
+		@review = Review.find(params[:id])
+	end
+
+	def update
+		@review.update(review_params)
+	end
+
+	def destroy
+		@review.destroy
+		redirect_to shows_path
+	end
+
+
 	private
 
 	def find_review
