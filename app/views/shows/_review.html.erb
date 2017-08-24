@@ -1,0 +1,14 @@
+<%= fields_for reviews do |ff| %>
+<h4>Leave a review for this show?</h4>
+	<div class="field">
+		<%= ff.label :comment %><br>
+		<br>
+		<%= ff.text_area :comment %>
+	</div>
+	<div class="field">
+		<%= ff.label :rating %><br>
+		<br>
+		<%= ff.text_field :rating %>
+	</div>
+<!-- 	<%= ff.hidden_field :user_id, :value => current_user.id %> -->
+<% end %>
