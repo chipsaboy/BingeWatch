@@ -64,6 +64,8 @@ class ShowsController < ApplicationController
       :network,
       :genres,
       :backdrop,
+      :tag_ids:[],
+      tags_attributes:[:name]
       reviews_attributes: [:rating, :comment, :user_id]
     )
   end
