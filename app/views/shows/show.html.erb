@@ -30,10 +30,13 @@
               </div>
           <h2>Reviews</h2>
           </div>
-          <%= @reviews.each do |r| %>
+          <% @reviews.each do |r| %>
           <div class="row">
             <h5>User<%= r.user.name %> gave it <%= r.rating %> out of 10</h5>
-            <p><%= r.comment %></p>
+            <% if r.comment.nil? %>
+            <% else %>
+              <p><%= r.comment %></p>
+            <% end %>
           </div>
           <% end %>
         </div>
