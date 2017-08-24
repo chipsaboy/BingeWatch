@@ -12,7 +12,7 @@ class ShowsController < ApplicationController
   end
 
   def create
-    search = Show.find_with_tmdb(params[:show][:name])
+    search = Show.find_info_with_tmdb(params[:show][:name])
     @show = current_user.shows.build(show_params.merge(search))
     if @show.save
       redirect_to @show
@@ -28,7 +28,6 @@ class ShowsController < ApplicationController
 
   def edit
     @show = Show.find_by(id: params[:id])
-    @review  = @show.reviews.find_by(user_id: current_user.id)
   end
 
   def update
