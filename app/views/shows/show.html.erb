@@ -33,10 +33,10 @@
           <% @reviews.each do |r| %>
           <div class="row">
             <h5>User<%= r.user.name %> gave it <%= r.rating %> out of 10</h5>
-            <% if r.comment.nil? %>
-            <% else %>
+<!--             <% if r.comment.nil? %>
+            <% else %> -->
               <p><%= r.comment %></p>
-            <% end %>
+<!--             <% end %> -->
           </div>
           <% end %>
         </div>
