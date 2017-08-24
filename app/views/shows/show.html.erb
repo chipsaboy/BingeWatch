@@ -29,8 +29,15 @@
                 <br>
               </div>
           </div>
+          <%= @reviews.each do |r| %>
+          <div>
+            <%= r.comment %><br>
+            <br>
+            <%= r.rating %>
+          </div>
           <% end %>
         </div>
+        <% end %>
         </div>
     </div>
 </div>

@@ -1,5 +1,5 @@
 class Review < ApplicationRecord
 	belongs_to :show
 	belongs_to :user
-	validates :comment, presence: true
+	accepts_nested_attributes_for :user
 end

@@ -13,8 +13,8 @@ class ShowsController < ApplicationController
   end
 
   def create
-  	if !params[:search].empty?
-    	search = Show.find_with_tmdb(params[:search])
+  	if Show.find_by(name: params[:name]).exists?
+    	search = Show.find_with_tmdb(params[:name])
     	@show = current_user.shows.build(search)
     	if !@show.nil? && @show.save
       		redirect_to @show, notice: 'Show successfully added'
@@ -22,6 +22,7 @@ class ShowsController < ApplicationController
       		render :new, notice: "We couldn't find that show"
       	end
     else
+      search = Show.find_with_tmdb(params[:name])
     	@show = current_user.shows.build(show_params)
     	if @show.save
     		redirect_to @show, notice: 'Show successfully added'
@@ -32,8 +33,8 @@ class ShowsController < ApplicationController
   end
 
   def show
+    @show = Show.find(params[:id])
   	@reviews = Review.where(show_id: @show.id)
-  	@show = Show.find(params[:id])
   	if @show
   		@reviews = Review.where(show_id: @show.id)
   	else
@@ -76,7 +77,7 @@ class ShowsController < ApplicationController
       :network,
       :genres,
       :backdrop,
-      reviews_attributes: [:rating, :comment]
+      reviews_attributes: [:id, :rating, :content, :user_id,]
     )
   end
 end
