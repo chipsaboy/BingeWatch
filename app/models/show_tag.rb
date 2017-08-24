@@ -1,0 +1,2 @@
+class ShowTag < ApplicationRecord
+end
