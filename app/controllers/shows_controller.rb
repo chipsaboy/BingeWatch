@@ -3,8 +3,7 @@ class ShowsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    # @shows = Show.all.order("name ASC")
-    @shows = current_user.shows
+    @shows = Show.all.order("name ASC")
   end
 
   def new
@@ -13,36 +12,23 @@ class ShowsController < ApplicationController
   end
 
   def create
-  	if Show.find_by(name: params[:name]).exists?
-    	search = Show.find_with_tmdb(params[:name])
-    	@show = current_user.shows.build(search)
-    	if !@show.nil? && @show.save
-      		redirect_to @show, notice: 'Show successfully added'
-    	else
-      		render :new, notice: "We couldn't find that show"
-      	end
+    search = Show.find_with_tmdb(params[:show][:name])
+    @show = current_user.shows.build(show_params.merge(search))
+    if @show.save
+      redirect_to @show
     else
-      search = Show.find_with_tmdb(params[:name])
-    	@show = current_user.shows.build(show_params)
-    	if @show.save
-    		redirect_to @show, notice: 'Show successfully added'
-    	else
-      		render :new
-      	end
+      render :new, alert: @show.errors.full_messages
     end
   end
 
   def show
-    @show = Show.find(params[:id])
+    @show = Show.find_by(id: params[:id])
   	@reviews = Review.where(show_id: @show.id)
-  	if @show
-  		@reviews = Review.where(show_id: @show.id)
-  	else
-  		redirect_to shows_url
-  	end
   end
 
   def edit
+    @show = Show.find_by(id: params[:id])
+    @review  = @show.reviews.find_by(user_id: current_user.id)
   end
 
   def update
@@ -77,7 +63,7 @@ class ShowsController < ApplicationController
       :network,
       :genres,
       :backdrop,
-      reviews_attributes: [:id, :rating, :content, :user_id,]
+      reviews_attributes: [:rating, :comment, :user_id]
     )
   end
 end

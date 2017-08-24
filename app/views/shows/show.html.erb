@@ -28,12 +28,12 @@
                 <h4>Network: </h4><%= @show.network %><br>
                 <br>
               </div>
+          <h2>Reviews</h2>
           </div>
           <%= @reviews.each do |r| %>
-          <div>
-            <%= r.comment %><br>
-            <br>
-            <%= r.rating %>
+          <div class="row">
+            <h5>User<%= r.user.name %> gave it <%= r.rating %> out of 10</h5>
+            <p><%= r.comment %></p>
           </div>
           <% end %>
         </div>

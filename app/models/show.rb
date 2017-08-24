@@ -11,6 +11,7 @@ class Show < ApplicationRecord
   end
 
   def self.find_with_tmdb(search)
+    search
     q = Tmdb::TV.find(search)
     if !q.empty?
 	    id = q[0].id
